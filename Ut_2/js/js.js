@@ -91,26 +91,24 @@ console.log()
  */
 
 //prueba 13
-/*
-let s1="esto es una cadana";
-console.log(s1.length);
-console.log(s1.charAt(0));
-console.log(s1.indexOf("es"));
-console.log(s1.lastIndexOf("es"));
-console.log(s1.match(/.n/));
-console.log(s1.search(/[aeiou]/));
-console.log(s1.replace(/e/g,"i"));
-console.log(s1.slice(5,7));
-console.log(s1.substring(5,7));
-console.log(s1.substr(5,7));
-console.log(s1.toLocaleUpperCase());
-console.log("cadena     con   \t\t     espacios ".trim());
-console.log(s1.startsWith("esto"));
-console.log(s1.endsWith("cadena"));
-console.log(s1.includes("una"));
-console.log("la".repeat(6));
-console.log("\u{1f3c4}");
-*/
+/*let s1="esto es una cadena";
+console.log(s1.length); //largo de la cadena
+console.log(s1.charAt(0)); //carácter de una posición
+console.log(s1.indexOf("es")); //busca la posición de la primera coincidencia
+console.log(s1.lastIndexOf("es")); //busca la posición de la última coincidencia
+console.log(s1.match(/.n/)); //devuelve las coincidencias
+console.log(s1.search(/[aeiou]/)); //busca las vocales
+console.log(s1.replace(/e/gi,"i")); //reemplaza la e globalmente sin distinguir mayúsculas y minúsculas por la i
+console.log(s1.slice(5,7)); //devuelve lo que hay desde la posición 5 asta la 7
+console.log(s1.substring(5,7)); //devuelve lo que hay desde la posición 5 asta la 7
+console.log(s1.substr(5,7)); //devuelve desde la posición que indiques y tantas como indiques
+console.log(s1.toLocaleUpperCase());  //convierte a mayúsculas
+console.log("cadena     con   \t\t     espacios ".trim()); // quita los últimos espacios
+console.log(s1.startsWith("esto")); //booleano si empieza con esto
+console.log(s1.endsWith("cadena"));  //booleano si termina con cadena
+console.log(s1.includes("una"));  //booleano si contiene una
+console.log("la".repeat(6)); //repite la 6 veces
+console.log("\u{1f3c4}"); //pinta lo que tenga referenciado en este caso un surfista*/
 
 //ejercicios de consolidacion
 
@@ -139,7 +137,7 @@ pasar dos parámetros, el número de milisegundos a esperar y qué función se
 va a ejecutar cuando pasen esos milisegundos. Crea un programa que espere 3
  segundos y luego pinte en una alerta “Hola”.
 */
-//setTimeout(3000,alert("pasaron 3 segundos hola"));
+/*setTimeout(3000,alert("pasaron 3 segundos hola")); *///después de 3 segundos muestro el alert
 
 /*
 Investiga la función setTimeOut. Fíjate cómo en dicha función se le pueden
@@ -148,26 +146,29 @@ Investiga la función setTimeOut. Fíjate cómo en dicha función se le pueden
   pida por pantalla el nombre al usuario y después de 3 segundos genere
   una respuesta con el nombre que introdujo el alumno.
 */
-//let nombre=prompt("dame el nombre")
-//setTimeout(3000,alert("pasaron 3 segundos te llamas " + nombre));
+/*let nombre=prompt("dame el nombre") //pido un nombre por el promt
+setTimeout(3000,alert("pasaron 3 segundos te llamas " + nombre));*/ //después de 3 segundos muestro lo pasado
 /*
 Genera una función que dada una cadena pinte: El número de caracteres
 que hay. El número de vocales. Si empieza por “A” o no.
-
-* */
+*/
 
 let cadena="mas vale pájaro en mano que ciento volando";
 function numeroCaracteresVocalesYSiInicioA(cadena) {
+    let numeroCaracteres=cadena.length; //guardo el número de caracteres totales de la cadena
     console.log(cadena.length);
-    if (console.log(cadena.includes("a","e","i","o","u"))){
-        cuenta++;
+    alert("numero de caracteres totales => " + numeroCaracteres);
+    let cuenta=cadena.replace(/[^aeiou]/gi,"").length; //reemplazo las vocales globalmente y sin distinguir mayúsculas
+    console.log(cadena.replace(/[^aeiou]/gi,"").length);
+    alert("numero de caracteres sin vocales => " + cuenta);
 
-    };
-    alert(cuenta);
-    if (console.log(cadena.charAt(0).includes("A"))){
-        alert("empieza por A")
+    /*if (console.log(cadena.charAt(0).includes("A"))){ //si el primer carácter es A lo digo
+        alert("la cadena empieza por A")
+        console.log("la cadena empieza por A");
     }else {
-        alert("no empieza por A")
-    }
+        alert("la cadena no empieza por A")
+        console.log("la cadena no empieza por A");
+    }*/
+    console.log(cadena.charAt(0).includes("A"))?console.log("la cadena empieza por A"):console.log("la cadena no empieza por A"); //modo ternario
 }
 console.log(numeroCaracteresVocalesYSiInicioA(cadena));
