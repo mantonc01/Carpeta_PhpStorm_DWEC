@@ -3,9 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Carpeta_PhpStorm.iml" filepath="$PROJECT_DIR$/.idea/Carpeta_PhpStorm.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../plantilla/.idea/plantilla.iml" filepath="$PROJECT_DIR$/../plantilla/.idea/plantilla.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../plantilla2/.idea/plantilla2.iml" filepath="$PROJECT_DIR$/../plantilla2/.idea/plantilla2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../untitled/.idea/untitled.iml" filepath="$PROJECT_DIR$/../untitled/.idea/untitled.iml" />
     </modules>
   </component>
 </project>
