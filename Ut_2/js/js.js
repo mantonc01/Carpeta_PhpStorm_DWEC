@@ -1,3 +1,4 @@
+"use strict";
 /*
 ejercicio 1
 let nombre ="Mario";
@@ -125,11 +126,15 @@ En caso contrario devolverá un mensaje de fracaso.
 let num1= prompt("introduce un numero");
 let num2= prompt("introduce un numero");
 let num3= prompt("introduce un numero");
-if(num1+num2+num3==100){
-    alert("exito");
+if(num1+num2+num3===100){
+    alert("éxito");
 }else {
     alert("fracaso");
-}*/
+    }
+    if(num1+num2+num3===100)?alert("éxito"):alert("fracaso");
+
+
+*/
 /*
 
 Investiga la función setTimeOut. Fíjate cómo en dicha función se le pueden
@@ -137,7 +142,10 @@ pasar dos parámetros, el número de milisegundos a esperar y qué función se
 va a ejecutar cuando pasen esos milisegundos. Crea un programa que espere 3
  segundos y luego pinte en una alerta “Hola”.
 */
-/*setTimeout(3000,alert("pasaron 3 segundos hola")); *///después de 3 segundos muestro el alert
+
+    /*setTimeout(alert,3000,"pasaron 3 segundos hola");*/
+
+ //después de 3 segundos muestro el alert
 
 /*
 Investiga la función setTimeOut. Fíjate cómo en dicha función se le pueden
@@ -153,7 +161,7 @@ Genera una función que dada una cadena pinte: El número de caracteres
 que hay. El número de vocales. Si empieza por “A” o no.
 */
 
-let cadena="mas vale pájaro en mano que ciento volando";
+/*let cadena="mas vale pájaro en mano que ciento volando";
 function numeroCaracteresVocalesYSiInicioA(cadena) {
     let numeroCaracteres=cadena.length; //guardo el número de caracteres totales de la cadena
     console.log(cadena.length);
@@ -162,13 +170,248 @@ function numeroCaracteresVocalesYSiInicioA(cadena) {
     console.log(cadena.replace(/[^aeiou]/gi,"").length);
     alert("numero de caracteres sin vocales => " + cuenta);
 
-    /*if (console.log(cadena.charAt(0).includes("A"))){ //si el primer carácter es A lo digo
+    /!*if (console.log(cadena.charAt(0).includes("A"))){ //si el primer carácter es A lo digo
         alert("la cadena empieza por A")
         console.log("la cadena empieza por A");
     }else {
         alert("la cadena no empieza por A")
         console.log("la cadena no empieza por A");
-    }*/
+    }*!/
     console.log(cadena.charAt(0).includes("A"))?console.log("la cadena empieza por A"):console.log("la cadena no empieza por A"); //modo ternario
 }
-console.log(numeroCaracteresVocalesYSiInicioA(cadena));
+console.log(numeroCaracteresVocalesYSiInicioA(cadena));*/
+
+/*
+
+UT2 EJERCICIOS FINALES A ENTREGAR
+
+Los siguientes ejercicios deberán ser entregados al final de la
+UT2. El formato de entrega será un fichero js subido a Moodle.
+
+    Crea una función que reciba dos cadenas y pinte cuál es la
+más larga de las dos. Si alguno de los dos argumentos no es una
+cadena devuelve un mensaje de error en su lugar. Probarlo con
+varias entradas directamente introducidas con código. Las
+salidas se harán con console.log.
+
+*/
+/*
+let cadena1="true mos";
+let cadena2="true mas";*/
+
+//function cadenaMasLarga(cadena1,cadena2) {
+ //  (typeof cadena1==="string"&&typeof cadena2==="string")?(cadena1.length>cadena2.length)?console.log(cadena1):console.log(cadena2):console.log("error");
+//}
+//cadenaMasLarga(cadena1,cadena2);
+
+/*
+
+    Crea una función que reciba dos cadenas. Comprobará que
+ambos argumentos son cadenas y en caso afirmativo pintará
+mediante console.log si una cadena es igual a la otra del
+revés. Prueba con varias entradas.
+*/
+/*function segunda(cadena1,cadena2) {
+    let comprobacion=typeof cadena1==="string"&&typeof cadena2==="string";
+    if (comprobacion){
+        let invertida="";
+        for(let i = cadena2.length -1;i>=0; --i){
+            invertida +=cadena2[i];
+        }
+    }
+    (comprobacion)?(cadena1===invertida)?console.log("son iguales"):console.log("no son iguales"):console.log("error");
+}
+segunda(cadena1,cadena2);*/
+
+
+//prueba 20
+/*
+
+let persona = {
+   nombre: "jesús",
+   edad: 45,
+   tlf:"123456789"
+};
+for (let campo in persona){
+   console.log(campo + ": " +persona[campo]);
+}
+*/
+
+/*
+let ar = new Array(4,21,23,24,8);
+
+for (let i in ar){
+   console.log(ar[i]);
+}*/
+/*
+EJERCICIO 14.1: Crea un programa que dada la siguiente cadena y utilizando un bucle for...of devuelva cuáles de las
+letras son vocales y cuáles son consonantes. NOTA: Los caracteres de las cadenas se pueden recorrer con un bucle de
+este tipo.
+ */
+/*let str = "ab1c3de4fg";
+
+for (let letra of str) {
+
+   if (letra.match(/[a-z]/gi)){
+      if (letra.match(/^[aeiou]/gi)){
+         console.log(letra + " letra")
+      } else {
+         console.log(letra + " consonante")
+      }
+   }
+
+}*/
+//EJERCICIO 14.2 Utiliza splice (en una sola sentencia) para que el siguiente array: [1,2,"a","d","g"]
+// se modifique a [1,2,"pepe",3,"H","g"]
+
+/*
+let a = [1,2,"a","d","g"];
+console.log(a);
+
+a.splice(2,3,"pepe",3,"H","g");
+console.log(a);*/
+
+
+/*PRUEBA (21):
+Define correctamente la función ordenaEnteros y comprueba que la ordenación resultante es correcta.
+Modificación: Hazlo mediante una función lambda.
+*/
+
+/*
+let a3=[20,6,100,51,28,9];
+a3.sort((entero1,entero2)=>{
+    //si entero1 es mayor que entero2 devuelve un numero positivo
+    if (entero1>entero2){
+        return 1;
+    }
+    //si entero1 es igual que entero2 devuelve 0
+    if (entero1==entero2){
+        return 0;
+    }
+    //si entero1 es menor que entero2 devuelve un numero negativo.
+    return -1;
+});
+//a3.sort((entero1,entero2)=>entero1-entero2);
+console.log(a3.join(" - "));*/
+
+//arrays
+/*class Persona {
+    nombre;
+    edad;
+
+    constructor(nombre,edad) {
+        this.nombre=nombre;
+        this.edad=edad;
+    }
+
+    toString() {
+        return this.nombre+"  ("+this.edad+")";
+    };
+}
+let personas =[new Persona("Marcos",33),
+    new Persona("María",19),
+    new Persona("Santiago",28),
+    new Persona("Cristina",40)];
+
+console.log(personas);
+personas.sort((persona1,persona2) => persona1.edad-persona2.edad);
+console.log(personas.toString());*/
+
+
+/**
+ * UT2 EJERCICIOS FINALES A ENTREGAR
+
+ ej3 * Crea una función a la cual se le pase un array. Esta función devolverá:
+ Cuántos elementos hay de tipo número y los pintará por pantalla.
+ Cuántos elementos hay de tipo cadena y los pintará por pantalla.
+ Cuántos elementos no son ni número ni cadena y los pintará por pantalla.
+ Prueba la ejecución con varias entradas.
+
+ */
+/*
+let arrayVariasCosas=["maria",1,45,,2,"lolo",true,false];
+
+console.log(arrayVariasCosas);
+
+function averiguaTipo() {
+    //arrayVariasCosas.forEach(elemento => console.log(elemento + " es un " + typeof elemento));
+    let texto =0;
+    let numero=0;
+    let otros=0;
+    for (let elemento of arrayVariasCosas){
+        if (typeof elemento == "string"){
+            console.log(elemento + " es un " + typeof elemento);
+            texto++;
+        }
+
+    }
+    console.log("total " + texto );
+
+    for (let elemento of arrayVariasCosas){
+        if (typeof elemento == "number"){
+            console.log(elemento + " es un " + typeof elemento);
+            numero++;
+        }
+    }
+    console.log("total " + numero );
+
+    for (let elemento of arrayVariasCosas){
+        if (typeof elemento != "number" && typeof elemento != "string" ){
+            console.log(elemento + " es un " + typeof elemento);
+            otros++;
+        }
+    }
+    console.log("total " + otros);
+}
+averiguaTipo();
+*/
+
+
+/*
+* PRUEBA (23):
+Utiliza rest y spread para crear una función a la que le puedas
+*  pasar un número ilimitado de parámetros. Compruebe que
+* todos esos parámetros sean números y devuelva el mayor de
+* todos. Si algún parámetro no es un número devolverá
+* undefined.  Prueba tu función con varias entradas
+* utilizando spread.*/
+/*
+function funcionConRest(...restoArg) {
+    //let mayor=0;
+   // restoArg.every(typeof "number")?restoArg.lastIndexOf(num=>num>num):console.log("undefine");
+    console.log("los argumentos son " + restoArg.toString());
+   let todosNumero= restoArg.every (function (elemento){
+       return typeof elemento ==="number";
+
+    });
+
+    return Math.max(restoArg);
+
+
+}
+funcionConRest(1,2);*/
+
+/*Los siguientes ejercicios deberán ser entregados al final de la UT2.
+El formato de entrega será un fichero js subido a Moodle.
+
+4) Crea una función que recibe 3 parámetros con valores
+por defecto (producto → “Producto genérico”, precio → 100, impuestos → 21).
+La función convierte las entradas a cadena, entero y entero.
+Si no se pudiesen convertir las entradas, devolvería los valores por defecto.
+Prueba esta función varias veces, omitiendo valores y poniendo valores incorrectos.
+*/
+
+function funcionConversiones(producto="Producto genérico",precio = 100,impuestos = 21) {
+    let product= String(producto);
+    let preci= Number(precio);
+    let impuesto=Number(impuestos);
+
+console.log( " El producto es " + product + " el precio es " + preci + " y su impuesto es " + impuesto);
+}
+
+
+funcionConversiones("asd");
+funcionConversiones("asd",true);
+funcionConversiones("asd",true,false);
+funcionConversiones("asd",true,23);
+funcionConversiones(null,true,false);
