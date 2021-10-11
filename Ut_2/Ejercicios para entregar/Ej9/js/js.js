@@ -23,8 +23,12 @@ class PlatoCocina {
         this.dificultad=dificultad;
     }
     toString(){
-        return "El plato de "+ this.nombrePlato + " tiene una duración de " + this.duracionMinutos + " con dificultad " + this.dificultad + "\n" + "Ingredientes : " + mapaPlatos;
+        return "El plato de "+ this.nombrePlato +
+            " tiene una duración de " + this.duracionMinutos +
+            " minutos con dificultad " + this.dificultad + "\n" +
+            "Ingredientes : "
     }
+
 }
 let platoCocina1=(new PlatoCocina("tortilla",15,5));
 let platoCocina2=(new PlatoCocina("patatas fritas",10,3));
@@ -35,7 +39,5 @@ mapaPlatos.set(platoCocina1,["huevos","aceite"]);
 mapaPlatos.set(platoCocina2,["patatas","aceite"]);
 mapaPlatos.set(platoCocina3,["fideos","agua"]);
 
-for(let[platos,mapaPlatos]of mapaPlatos){
-    console.log(platos.nombrePlato)
-}
+
 console.log(platoCocina1.toString());

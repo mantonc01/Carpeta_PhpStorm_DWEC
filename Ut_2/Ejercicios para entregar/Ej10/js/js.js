@@ -11,9 +11,13 @@ todas las longitudes de las cadenas. Utiliza rest y reduce. Prueba con varias en
 
 function muchosArgumentos(...argumentos) {
 
+    let strings=argumentos.every(function (arg1) {
+        return typeof arg1 ==="string";
+    });
 
-    if (argumentos.every(typeof "string")){
-        console.log("string");
+    if (strings){
+        //let suma= (valorPasado,valorActual)=>valorPasado+valorActual;
+        console.log(argumentos.reduce((total,numero)=>total+numero.length,0));
     }
 
 }

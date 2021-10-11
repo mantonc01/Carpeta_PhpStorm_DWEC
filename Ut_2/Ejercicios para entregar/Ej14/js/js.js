@@ -61,19 +61,19 @@ let mazo=[["Corazones",1],
     ["Picas",11],
     ["Picas",12],
     ["Picas",13],
-    ["Trebol",1],
-    ["Trebol",2],
-    ["Trebol",3],
-    ["Trebol",4],
-    ["Trebol",5],
-    ["Trebol",6],
-    ["Trebol",7],
-    ["Trebol",8],
-    ["Trebol",9],
-    ["Trebol",10],
-    ["Trebol",11],
-    ["Trebol",12],
-    ["Trebol",13],
+    ["Trébol",1],
+    ["Trébol",2],
+    ["Trébol",3],
+    ["Trébol",4],
+    ["Trébol",5],
+    ["Trébol",6],
+    ["Trébol",7],
+    ["Trébol",8],
+    ["Trébol",9],
+    ["Trébol",10],
+    ["Trébol",11],
+    ["Trébol",12],
+    ["Trébol",13],
     ["Rombo",1],
     ["Rombo",2],
     ["Rombo",3],
@@ -96,9 +96,9 @@ let mazo=[["Corazones",1],
 function numerosBarajados() {
     let numerosBarajados = [];
     for (let i = 0; i <= 51; i++) {
-        numerosBarajados.push([i]);
+        numerosBarajados.push([i]);//array de números del 0 al 51
     }
-    numerosBarajados.sort(() => Math.random() - 0.5);
+    numerosBarajados.sort(() => Math.random() - 0.5);//barajo el array de números
     return numerosBarajados;
 }
 
@@ -131,7 +131,6 @@ function blackJack() {
 
     let cartasJugador=turnoJugador(mazo);
     let valorJugador= calcularValorMano(cartasJugador);
-    //console.log(mazo.length);
 
     if (valorJugador>21){
         alert("Has perdido la partida, has superado 21 puntos");
@@ -146,18 +145,8 @@ while (prompt("¿Quieres jugar al BlackJack?  (S/N)")=== "S"){
 }
 
 /**
- * Devuelve el mazo con todas las cartas ordenadas
- * Para implementarlo se emplea un doble for con los posibles palos y
- * valores.
- */
-
-/*function construirMazo() {
-
-return mazoColocado;
-}*/
-
-/**
- * construye un array con las cartas
+ *
+ * Devuelve el mazo con todas las cartas barajadas
  * @returns {*[]} un array de cartas barajado
  */
 function construirMazo() {
@@ -170,26 +159,45 @@ function construirMazo() {
     return mazoBarajado
 }
 
-function turnoJugador(mazo) {
-    let cartasJugador=[];
-    let puntos=0;
-    do {
-        cartasJugador.push(mazo[0])// Ingreso las cartas del jugador
-        if(mazo[0][1]===11){
-            console.log("Jota de "+ mazo[0][0]);
-        }else {
-            if(mazo[0][1]===12){
-                console.log("Reina de "+ mazo[0][0]);
-            }else {
-                if (mazo[0][1] === 13) {
-                    console.log("Rey de " + mazo[0][0]);
-                }else {
+/**
+ * va nombrando los valores de las cartas
+ * @param mazo con cartas
+ */
+function nombresDeCartas(mazo) {
+    if (mazo[0][1] === 11) {
+        console.log("Jota de " + mazo[0][0]);
+    } else {
+        if (mazo[0][1] === 12) {
+            console.log("Reina de " + mazo[0][0]);
+        } else {
+            if (mazo[0][1] === 13) {
+                console.log("Rey de " + mazo[0][0]);
+            } else {
+                if (mazo[0][1] === 1) {
+                    console.log("Ás de " + mazo[0][0]);
+                } else {
                     console.log(mazo[0][1] + " de " + mazo[0][0]);
                 }
             }
         }
+    }
+}
+
+/**
+ * Turno del jugador
+ * @param mazo barajado para coger las cartas
+ * @returns {*[]}
+ */
+function turnoJugador(mazo) {
+    let cartasJugador=[];
+    let puntos=0;
+    console.log("-----TU TURNO------");
+    do {
+        cartasJugador.push(mazo[0])// Ingreso las cartas del jugador
+        nombresDeCartas(mazo); // Nombro las cartas
         mazo.splice(0,1);// Retiro del mazo la carta del jugador
         puntos=calcularValorMano(cartasJugador) ;
+        console.log("Llevas " + puntos + " puntos.");
     }while (puntos < 22 && prompt("¿Quieres otra carta?  (S/N)")=== "S")
     return cartasJugador;
 }
@@ -207,20 +215,10 @@ function turnoJugador(mazo) {
 function calcularValorMano(cartas) {
     let number=0;
     for (let item of cartas){
-        if(item[1]>10){
-            number+=10;
-        }else {
-            if(item[1]===1 && number<=10){
-                number+=11;
-            }else {
-                number+=item[1];
-            }
-        }
+        (item[1]>10)?number+=10:(item[1]===1 && number<=10)?number+=11:number+=item[1];
     }
-    console.log("Puntos totales : "+number)
     return number;
 }
-
 
 /**
  * empieza el turno de la máquina
@@ -231,47 +229,39 @@ function calcularValorMano(cartas) {
 function turnoMaquina(mazo,valorJugador){
     let cartasMaquina=[];
     let puntos=0;
+    console.log("-----TURNO DE LA MÁQUINA------");
     do {
         cartasMaquina.push(mazo[0])// Ingreso las cartas del jugador
-        if(mazo[0][1]===11){
-            console.log("Jota de "+ mazo[0][0]);
-        }else {
-            if(mazo[0][1]===12){
-                console.log("Reina de "+ mazo[0][0]);
-            }else {
-                if (mazo[0][1] === 13) {
-                    console.log("Rey de " + mazo[0][0]);
-                }else {
-                    console.log(mazo[0][1] + " de " + mazo[0][0]);
-                }
-            }
-        }
+        nombresDeCartas(mazo); // Nombro las cartas
         mazo.splice(0,1);// Retiro del mazo la carta del jugador
         puntos=calcularValorMano(cartasMaquina) ;
+        console.log("La máquina lleva " + puntos + " puntos.");
     }while (puntos < 22 && puntos < valorJugador)
     return cartasMaquina;
 }
 
-
+/**
+ * Se pinta las cartas de los jugadores y se dice quien gana.
+ * @param cartasJugador cartas del jugador.
+ * @param cartasMaquina cartas de la máquina.
+ */
 function pintarInfoFinalJuego(cartasJugador, cartasMaquina) {
     let puntosJugador=calcularValorMano(cartasJugador);
     let puntosMaquina=calcularValorMano(cartasMaquina);
-    console.log("Tienes " + puntosJugador + " puntos con estas cartas : "+cartasJugador.join("==>"));
-    console.log("La máquina tiene " + puntosMaquina + " puntos con estas cartas : " + cartasMaquina.join("==>"));
+    console.log("-----PUNTUACIONES------");
+    console.log("Tienes " + puntosJugador + " puntos.");
+    console.log("La máquina tiene " + puntosMaquina + " puntos.");
     if (puntosJugador==puntosMaquina && puntosJugador<22){
         console.log("EMPATE !!!!!!!!!")
     }else {
         if (puntosJugador<22&&puntosMaquina<22){
             if (puntosJugador>puntosMaquina){
-                console.log("GANASTE!!!!!!")
+                console.log("GANASTE !!!!!!")
             } else {
-                console.log("PERDISTES !!!!!!!!!")
+                console.log("PERDISTE !!!!!!!!!")
             }
         } else {
-            if (puntosMaquina>22)
-                console.log("GANASTE !!!!!!!!!")
+            console.log("GANASTE !!!!!!!!!")
         }
     }
-
-
 }
