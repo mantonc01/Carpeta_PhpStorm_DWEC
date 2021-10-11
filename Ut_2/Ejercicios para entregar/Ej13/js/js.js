@@ -4,7 +4,7 @@ UT2 EJERCICIOS FINALES A ENTREGAR
 
 /*Los siguientes ejercicios deberán ser entregados al final de la UT2. 
 El formato de entrega será un fichero js subido a Moodle.
- 
+ ej 13
 */
 
 
