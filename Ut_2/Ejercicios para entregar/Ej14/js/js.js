@@ -190,7 +190,6 @@ function turnoJugador(mazo) {
         }
         mazo.splice(0,1);// Retiro del mazo la carta del jugador
         puntos=calcularValorMano(cartasJugador) ;
-        //console.log(mazo.length);
     }while (puntos < 22 && prompt("¿Quieres otra carta?  (S/N)")=== "S")
     return cartasJugador;
 }
@@ -221,9 +220,14 @@ function calcularValorMano(cartas) {
     console.log("Puntos totales : "+number)
     return number;
 }
-//console.log(construirMazo().join("\n"))
-//calcularValorMano(turnoJugador(construirMazo()));
 
+
+/**
+ * empieza el turno de la máquina
+ * @param mazo sin las cartas del jugador
+ * @param valorJugador valor de las cartas del jugador
+ * @returns {*[]} array con las cartas de la máquina
+ */
 function turnoMaquina(mazo,valorJugador){
     let cartasMaquina=[];
     let puntos=0;
@@ -244,7 +248,30 @@ function turnoMaquina(mazo,valorJugador){
         }
         mazo.splice(0,1);// Retiro del mazo la carta del jugador
         puntos=calcularValorMano(cartasMaquina) ;
-        //console.log(mazo.length);
     }while (puntos < 22 && puntos < valorJugador)
-    return cartasJugador;
+    return cartasMaquina;
+}
+
+
+function pintarInfoFinalJuego(cartasJugador, cartasMaquina) {
+    let puntosJugador=calcularValorMano(cartasJugador);
+    let puntosMaquina=calcularValorMano(cartasMaquina);
+    console.log("Tienes " + puntosJugador + " puntos con estas cartas : "+cartasJugador.join("==>"));
+    console.log("La máquina tiene " + puntosMaquina + " puntos con estas cartas : " + cartasMaquina.join("==>"));
+    if (puntosJugador==puntosMaquina && puntosJugador<22){
+        console.log("EMPATE !!!!!!!!!")
+    }else {
+        if (puntosJugador<22&&puntosMaquina<22){
+            if (puntosJugador>puntosMaquina){
+                console.log("GANASTE!!!!!!")
+            } else {
+                console.log("PERDISTES !!!!!!!!!")
+            }
+        } else {
+            if (puntosMaquina>22)
+                console.log("GANASTE !!!!!!!!!")
+        }
+    }
+
+
 }
