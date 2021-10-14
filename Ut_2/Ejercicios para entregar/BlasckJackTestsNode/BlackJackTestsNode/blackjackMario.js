@@ -1,4 +1,5 @@
 "use strict";
+//Para manejar el prompt desde consola:
 let prompt = require('prompt-sync')();
 
 /**
@@ -30,22 +31,24 @@ while (prompt("¿Quieres jugar al BlackJack?  (S/N)")=== "S"){
  */
 function construirMazo() {
     let mazo = [];
-    for(let palo of ["Corazones","Picas","Tréboles","Diamantes"]){
+    for(let palo of ["Corazones", "Picas", "Trébol", "Rombo"]){
         for(let valor of [1,2,3,4,5,6,7,8,9,10,11,12,13]){
             mazo.push([palo,valor]);
         }
     }
     let mazoColocado=mazo;
     let mazoBarajado=[];
+    let numerosBarajados=[];
     for (let i = 0; i <= 51; i++) {
         numerosBarajados.push([i]);//array de números del 0 al 51
     }
-    numerosBarajados.sort(() => Math.random() - 0.5);//barajo el array de números
-    let numerosAleatorios = numerosBarajados;
+
+    let numerosAleatorios = numerosBarajados.sort(() => Math.random() - 0.5);//barajo el array de números
     for (let i = 0; i <= 51; i++) {
         mazoBarajado.push(mazoColocado[numerosAleatorios[i]]);
     }
     return mazoBarajado
+    //return mazo
 }
 
 /**
@@ -59,14 +62,14 @@ function construirMazo() {
  */
 function calcularValorMano(cartas) {
     let number=0;
-    for (let item of cartas){
-        if(item[1]>10){
+    for (let carta of cartas){
+        if(carta[1]>10){//si la carta vale mas de 10 solo cuenta 10
             number+=10
         }else{
-            if(item[1]===1 && number<=10) {
+            if(carta[1]===1 && number<=10) {//si la carta es un as y tenemos menos o igual a 10 puntos el as vale 11 puntos
                 number+=11
             } else{
-                number+=item[1];
+                number+=carta[1];//el resto de cartas valen su valor
             }
         }
     }
@@ -98,6 +101,15 @@ function nombresDeCartas(mazo) {
 }
 
 /**
+ * Saca una carta aleatoria y la elimina del mazo
+ * @param mazo
+ */
+function getAleatoria(mazo) {
+    return mazo.splice(0,1)[0];
+}
+
+
+/**
  * Turno del jugador
  * @param mazo barajado para coger las cartas
  * @returns {*[]}
@@ -107,9 +119,8 @@ function turnoJugador(mazo) {
     let puntos=0;
     console.log("-----TU TURNO------");
     do {
-        cartasJugador.push(mazo[0])// Ingreso las cartas del jugador
         nombresDeCartas(mazo); // Nombro las cartas
-        mazo.splice(0,1);// Retiro del mazo la carta del jugador
+        cartasJugador=getAleatoria(mazo);// Retiro del mazo la carta del jugador y se la ingreso
         puntos=calcularValorMano(cartasJugador) ;
         console.log("Llevas " + puntos + " puntos.");
     }while (puntos < 22 && prompt("¿Quieres otra carta?  (S/N)")=== "S")
@@ -130,9 +141,8 @@ function turnoMaquina(mazo,valorJugador){
     let puntos=0;
     console.log("-----TURNO DE LA MÁQUINA------");
     do {
-        cartasMaquina.push(mazo[0])// Ingreso las cartas del jugador
         nombresDeCartas(mazo); // Nombro las cartas
-        mazo.splice(0,1);// Retiro del mazo la carta del jugador
+        cartasMaquina=getAleatoria(mazo);// Retiro del mazo la carta del jugador y se la ingreso
         puntos=calcularValorMano(cartasMaquina) ;
         console.log("La máquina lleva " + puntos + " puntos.");
     }while (puntos < 22 && puntos < valorJugador)
@@ -150,7 +160,7 @@ function pintarInfoFinalJuego(cartasJugador, cartasMaquina) {
     console.log("-----PUNTUACIONES------");
     console.log("Tienes " + puntosJugador + " puntos.");
     console.log("La máquina tiene " + puntosMaquina + " puntos.");
-    if (puntosJugador==puntosMaquina && puntosJugador<22){
+    if (puntosJugador===puntosMaquina && puntosJugador<22){
         console.log("EMPATE !!!!!!!!!")
     }else {
         if (puntosJugador<22&&puntosMaquina<22){
@@ -169,7 +179,7 @@ function pintarInfoFinalJuego(cartasJugador, cartasMaquina) {
 module.exports = {
     construirMazo : construirMazo,
     calcularValorMano : calcularValorMano,
-    //getAleatoria : getAleatoria,
+    getAleatoria : getAleatoria,
     turnoMaquina: turnoMaquina,
     blackJack : blackJack,
     nombresDeCartas:nombresDeCartas
