@@ -217,7 +217,15 @@ function turnoJugador(mazo) {
 function calcularValorMano(cartas) {
     let number=0;
     for (let item of cartas){
-        (item[1]>10)?number+=10:(item[1]===1 && number<=10)?number+=11:number+=item[1];
+        if(item[1]>10){
+            number+=10
+        }else{
+            if(item[1]===1 && number<=10) {
+                number+=11
+            } else{
+                number+=item[1];
+            }
+        }
     }
     return number;
 }
